@@ -1,4 +1,7 @@
 openapi: 3.0.3
+info:
+  title: Users API
+  version: 1.0.0
 servers:
   - url: https://api.example.com/v1
 paths:
@@ -10,13 +13,18 @@ paths:
         - name: id
           in: path
           required: true
+          schema:
+            type: integer
+            format: int64
       responses:
         200:
+          description: Успешный ответ
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/User"
         500:
+          description: Ошибка сервера
           content:
             application/json:
               schema:

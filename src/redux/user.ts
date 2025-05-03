@@ -1,12 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { codegenApi, User } from "./codegen/codegenApi";
+
+const initialState: User | null = null;
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: null,
+  initialState,
   reducers: {
-    getUserDetails: (state) => {
-      return state;
-    },
+    getUserDetails: (user) => user,
+  },
+  extraReducers: (builder) => {
+    builder.addMatcher(
+      codegenApi.endpoints.getUsersById.matchFulfilled,
+      (state: User | null, response) => {
+        state = response.payload;
+      }
+    );
   },
 });
 
