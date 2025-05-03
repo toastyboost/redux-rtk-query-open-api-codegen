@@ -1,0 +1,1 @@
+# redux-rtk-query-open-api-codegen
